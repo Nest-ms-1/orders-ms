@@ -24,7 +24,7 @@ export class OrdersService extends PrismaClient implements OnModuleInit {
     try {
       // 1. confirmar los productos
       const productsIds = createOrderDto.items.map((item) => item.productId)
-      const products = await firstValueFrom(
+      const products: any[] = await firstValueFrom(
         this.client.send({ cmd: 'validate_products' }, productsIds)
       )
 
