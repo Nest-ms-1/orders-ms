@@ -2,7 +2,7 @@ import { HttpStatus, Inject, Injectable, Logger, OnModuleInit } from '@nestjs/co
 import { ClientProxy, RpcException } from '@nestjs/microservices'
 import { PrismaClient } from '@prisma/client'
 import { firstValueFrom } from 'rxjs'
-import { NAST_SERVICE, PRODUCT_SERVICE } from 'src/config'
+import { NATS_SERVICE, PRODUCT_SERVICE } from 'src/config'
 import { ChangeOrderStatusDto, OrderItemDto, PaidOrderDto } from './dto'
 import { CreateOrderDto } from './dto/create-order.dto'
 import { OrderPagintationDto } from './dto/order-pagination.dto'
@@ -13,7 +13,7 @@ import { IsCurrency } from 'class-validator'
 export class OrdersService extends PrismaClient implements OnModuleInit {
   logger = new Logger('OrdersServices')
 
-  constructor(@Inject(NAST_SERVICE) private readonly client: ClientProxy) {
+  constructor(@Inject(NATS_SERVICE) private readonly client: ClientProxy) {
     super()
   }
 
